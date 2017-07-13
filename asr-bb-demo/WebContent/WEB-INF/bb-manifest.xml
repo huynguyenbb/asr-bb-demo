@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
+
+  <plugin>
+    <name value="plugin.name"/>
+    <handle value="asr-bb-demo"/>
+    <description value="plugin.description"/>
+    <default-locale value="en_US"/>
+    <webapp-type value="javaext"/>
+    <mandatory value="false" />
+    <!-- Your B2 Version -->
+    <version value= "1.0.0"/>
+    <requires>
+      <!-- Minimum Required Version of Learn that this B2 can be installed on -->
+      <bbversion min="3000.1.0"/>
+    </requires>
+    <vendor>
+      <id value="asr"/>
+      <name value="ASR BB DEMO"/>
+      <url value="http://www.blackboard.com/"/>
+      <description value="plugin.vendor.description"/>
+    </vendor>
+
+    <http-actions/>
+
+    <reports>
+      <report-package file-name="reporting.zip"/>
+    </reports>
+
+    <permissions>
+      <permission type="blackboard.platform.reporting.service.birt.BirtReportPermission" name="course.statistics" />
+      <permission type="blackboard.platform.reporting.service.birt.BirtReportPermission" name="system.statistics" />
+    </permissions>  
+    
+    </plugin>
+
+</manifest>

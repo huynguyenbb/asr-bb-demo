@@ -1,0 +1,15 @@
+<package provider="BIRT" name="blackboard.asr.demo">
+  <source>Blackboard, Inc.</source>
+  <definition name="blackboard.course.title.birt" file="reports/asr_demo_course_report.rptdesign" version="1.0.0.0" provider="BIRT"
+  		parameterHandler="blackboard.platform.reporting.service.birt.BirtPromptBuilder">
+    <title>blackboard.course.title.birt</title>
+    <description>blackboard.course.B2Desc.birt</description>
+    <type>course.statistics</type>
+  </definition>
+  <definition name="blackboard.system.title.birt" file="reports/asr_demo_system_report.rptdesign" version="1.0.0.0" provider="BIRT"
+  		parameterHandler="blackboard.platform.reporting.service.birt.BirtPromptBuilder">
+    <title>blackboard.system.title.birt</title>
+    <description>blackboard.system.B2Desc.birt</description>
+    <type>system.statistics</type>
+  </definition>
+</package>

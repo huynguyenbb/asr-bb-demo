@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <text-property name="title">ASR Course Completion Report</text-property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">1627</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">1627</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">1627</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <method name="beforeFactory"><![CDATA[BlackboardFunctions.AddParameterBinding(reportContext);]]></method>
+    <property name="theme">common.bb_base_theme</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">blackboard.common/resources/common.rptlibrary</property>
+            <property name="namespace">common</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="param#course#id" id="1590">
+            <text-property name="promptText">param#course#id</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">4</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="brand#header#image" id="1591">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="brand#footer#image" id="1592">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="param#report#title" id="1593">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">Report Title</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="param#user#id#list" id="1629">
+            <text-property name="promptText">Select Students</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">list_all_users</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["user_pk"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["users"]</expression>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">multi-value</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="bb_common_data_source" id="995"
+ extends="common.bb_common_data_source"/>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="BBLEARN_data_source" id="1587"
+ extends="common.BBLEARN_data_source"/>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="workspace_postgres_BBLEARN_data_source" id="1588">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://127.0.0.1:9879/BBLEARN</property>
+            <property name="odaUser">BBLEARN</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">cG9zdGdyZXM=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="show_course_completion" id="1595">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">student_name</property>
+                    <expression name="expression">row["lastname"] + ", " + row["firstname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">user_id</property>
+                    <property name="alias">user_id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">user_id</text-property>
+                    <text-property name="heading">user_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">lastname</property>
+                    <property name="alias">lastname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">lastname</text-property>
+                    <text-property name="heading">lastname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">firstname</property>
+                    <property name="alias">firstname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">firstname</text-property>
+                    <text-property name="heading">firstname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">title</property>
+                    <property name="alias">title</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">title</text-property>
+                    <text-property name="heading">title</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">display_title</property>
+                    <property name="alias">display_title</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">display_title</text-property>
+                    <text-property name="heading">display_title</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">score</property>
+                    <property name="alias">score</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">score</text-property>
+                    <text-property name="heading">score</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">possible</property>
+                    <property name="alias">possible</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">possible</text-property>
+                    <text-property name="heading">possible</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">pCourseId</property>
+                    <property name="paramName">param#course#id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-5</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData"/>
+            <method name="beforeOpen"><![CDATA[// setAllUsers u.pk1
+Packages.java.lang.System.out.println("**** setAllUsers.beforeOpen");
+
+insertSQL = function(queryText, colName) {
+    var paramValue = params["param#user#id#list"].value;
+    var insert = "";
+    if(paramValue != null &amp;&amp; paramValue != "undefined" ) {
+        var i1 = Math.ceil(paramValue.length/100);
+        // paramValue will be java Object[]
+        var valueList = [];
+        for(var i = 0; i < paramValue.length; i++) {
+            valueList.push(paramValue[i].toString());
+        }
+        var sublist = new Array(100);
+                var x=0;
+                var result = [];
+                var text = ") or "+colName+" in(";
+               for(var p=0; p<i1; p++)
+                 {
+                  if(valueList.length>=(x+100))
+                   {
+
+                     sublist = new Array(valueList.slice(x, x+100));
+                     x+=100;
+                   }
+                  else
+                   {
+                     sublist = new Array(valueList.slice(x, valueList.length));
+                    }
+ 
+                 for(var i=0; i<sublist.length; i++)
+                   {
+  
+                    if(p===(i1-1))         
+                      result = result.concat(sublist );
+                    else
+                      result = result.concat(sublist )+text;
+                    }
+                  }
+        var valuesInsert = valueList.join(", ");
+        var orcl = [
+            " and (",
+            colName,
+           " in ( ",result,"))"
+        ].join("");
+        var other = [
+            " and ",
+            colName,
+            " in (",
+            valuesInsert,
+            ")"
+        ].join("");
+        var insert = [
+            "   --MS-- ", other, "\n",
+            "   /*ORCL*/ ", orcl, "\n",
+            "   --PGSQL-- ", other, "\n" 
+        ].join("");
+    }
+    var newQueryText = queryText.replace("/* insert SQL */", insert);
+    Packages.java.lang.System.out.println("**** newQueryText = " + newQueryText);
+    return newQueryText;
+};
+
+this.queryText = insertSQL(this.queryText, "u.pk1");
+
+Packages.java.lang.System.out.println("**** newQueryText = " + this.queryText);]]></method>
+            <property name="dataSource">BBLEARN_data_source</property>
+            <xml-property name="queryText"><![CDATA[select u.user_id, u.lastname, u.firstname, gm.title, gm.display_title, COALESCE( gg.manual_score, (select score from attempt where pk1 = gg.last_attempt_pk1), null ) as "score", gm.possible
+from gradebook_main gm 
+cross join course_users cu
+full outer join gradebook_grade gg on gg.gradebook_main_pk1=gm.pk1 and gg.course_users_pk1=cu.pk1
+full outer join attempt a on a.pk1=gg.highest_attempt_pk1
+join users u on u.pk1=cu.users_pk1
+join course_main cm on cm.pk1=cu.crsmain_pk1 and cm.pk1=gm.crsmain_pk1
+where gm.deleted_ind = 'N'
+and gm.calculated_ind = 'N'
+and cu.role = 'S'
+and cm.pk1 = ?
+/* insert SQL */
+order by u.user_id, gm.position]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>user_id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>user_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>user_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>lastname</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>lastname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>lastname</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>firstname</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>firstname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>firstname</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>title</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>333</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>title</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>title</design:label>
+            <design:formattingHints>
+              <design:displaySize>333</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>display_title</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>333</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>display_title</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>display_title</design:label>
+            <design:formattingHints>
+              <design:displaySize>333</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>score</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>score</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>score</design:label>
+            <design:formattingHints>
+              <design:displaySize>131089</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>possible</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>17</design:precision>
+            <design:scale>17</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>possible</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>possible</design:label>
+            <design:formattingHints>
+              <design:displaySize>25</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="list_all_users" id="1627">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">user_pk</property>
+                    <expression name="expression">row["user_pk1"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">users</property>
+                    <expression name="expression">var result;&#13;
+result = bbUtil.formatNameWithId( row["user_id"], row["firstname"], row["middlename"], row["lastname"], row["title"], row["othername"], row["suffix"], 'SHORT_SURNAME' );&#13;
+result == null ? "????" : result</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">user_pk1</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">user_pk1</text-property>
+                    <text-property name="heading">user_pk1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">lastname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">lastname</text-property>
+                    <text-property name="heading">lastname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">firstname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">firstname</text-property>
+                    <text-property name="heading">firstname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">title</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">title</text-property>
+                    <text-property name="heading">title</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">suffix</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">suffix</text-property>
+                    <text-property name="heading">suffix</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">middlename</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">middlename</text-property>
+                    <text-property name="heading">middlename</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">othername</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">othername</text-property>
+                    <text-property name="heading">othername</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">user_id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">user_id</text-property>
+                    <text-property name="heading">user_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">user_pk</property>
+                    <property name="alias">user_pk</property>
+                    <property name="analysis">measure</property>
+                </structure>
+                <structure>
+                    <property name="columnName">users</property>
+                    <property name="alias">users</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">course_pk</property>
+                    <property name="paramName">param#course#id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-5</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData"/>
+            <property name="dataSource">BBLEARN_data_source</property>
+            <xml-property name="queryText"><![CDATA[select
+u.pk1 user_pk1,
+u.lastname,
+u.firstname,
+u.title,
+u.suffix,
+u.middlename,
+u.othername,
+u.user_id
+
+from
+users u
+join course_users cu on cu.users_pk1 = u.pk1
+
+where
+cu.crsmain_pk1 = ?
+and cu.available_ind = 'Y' and cu.row_status = 0
+and u.available_ind = 'Y' and u.row_status = 0
+and cu.role = 'S']]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>user_pk1</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>user_pk1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>user_pk1</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>lastname</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>lastname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>lastname</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>firstname</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>firstname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>firstname</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>title</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>title</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>title</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>suffix</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>suffix</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>suffix</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>middlename</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>middlename</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>middlename</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>othername</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>othername</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>othername</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>user_id</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>user_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>user_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <text id="1596">
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<H2><CENTER>ASR Course Completion Report</CENTER></H2>]]></text-property>
+        </text>
+        <table id="1597">
+            <property name="dataSet">show_course_completion</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">student_name</property>
+                    <text-property name="displayName">student_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["student_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">title</property>
+                    <text-property name="displayName">title</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["title"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">score</property>
+                    <text-property name="displayName">score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["score"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">possible</property>
+                    <text-property name="displayName">possible</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["possible"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+            </list-property>
+            <column id="1621"/>
+            <column id="1622"/>
+            <column id="1623"/>
+            <column id="1624"/>
+            <header>
+                <row id="1598">
+                    <cell id="1605">
+                        <label id="1606">
+                            <text-property name="text">Student Name</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1599">
+                        <label id="1600">
+                            <text-property name="text">Grade Center Item</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1601">
+                        <label id="1602">
+                            <text-property name="text">Score Received</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1603">
+                        <label id="1604">
+                            <text-property name="text">Score Possible</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="1607">
+                    <cell id="1614">
+                        <data id="1615">
+                            <property name="resultSetColumn">student_name</property>
+                        </data>
+                    </cell>
+                    <cell id="1608">
+                        <data id="1609">
+                            <property name="resultSetColumn">title</property>
+                        </data>
+                    </cell>
+                    <cell id="1610">
+                        <data id="1611">
+                            <property name="resultSetColumn">score</property>
+                        </data>
+                    </cell>
+                    <cell id="1612">
+                        <data id="1613">
+                            <property name="resultSetColumn">possible</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="1616">
+                    <cell id="1617"/>
+                    <cell id="1618"/>
+                    <cell id="1619"/>
+                    <cell id="1620"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
